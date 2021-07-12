@@ -22,8 +22,8 @@ export default function Add(){
 
     const takePicture = async () => {
         if(camera){
-            const data = await camera.takePictureAsync(null)
-            setImage(data.uri)
+            const data = await camera.takePictureAsync(null);
+            setImage(data.uri);
         }
     }
     const pickImage = async () => {
@@ -35,7 +35,7 @@ export default function Add(){
         );
         console.log(result);
         if (!result.canelled){
-            setImage(result.uri)
+            setImage(result.uri);
         }
     }
 
@@ -62,7 +62,7 @@ export default function Add(){
           }}
         ></Button>
         <Button title='Take Picture' onPress={takePicture}></Button>
-        <Button title='Select Image' onPress={pickImage}/>
+        {hasGalleryPermission && <Button title='Select Image' onPress={pickImage}/>}
         {image && <Image source={{uri: image}} style={styles.image}/>}
     </View>
     )
