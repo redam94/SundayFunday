@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View,  TouchableOpacity, TextInput, Dimensions, StyleSheet, Text } from 'react-native';
+import { View,  TouchableOpacity, TextInput, Dimensions, StyleSheet, Text, Alert } from 'react-native';
 
 import firebase from 'firebase';
+import { a_100, a_30, flute as pink, background as yellow, a_50 } from '../../styles/colors';
 require('firebase/auth');
 
 const window = Dimensions.get('window');
@@ -22,10 +23,10 @@ export class Login extends Component {
         const { email, password } = this.state;
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then((result)=>{
-            console.log(result);
+            Alert.alert("Sign in successful!")
         })
         .catch((error)=> {
-            console.log(error);
+            Alert.alert("Invalid Credentials", "Check your email or password");
         });
     }
 
@@ -56,9 +57,10 @@ export class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
+    container: { flex: 1, 
+        justifyContent: 'center', 
         alignItems: 'center',
+        backgroundColor: yellow+a_50,
     },
     textInput: {
         height: .05*window.height,
@@ -69,12 +71,13 @@ const styles = StyleSheet.create({
         height: .05*window.height,
         width: .8*window.width,
         borderRadius: 10,
-        backgroundColor: 'lightblue',
+        backgroundColor: yellow+a_100,
         alignItems: 'center',
         justifyContent: 'center',
     },
     buttonText: {
-        fontSize: 16
+        fontSize: 16,
+        color: pink+a_100,
     },
 });
 

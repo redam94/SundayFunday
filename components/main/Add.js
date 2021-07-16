@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, View, Text, Button, Image } from 'react-native'
+import { a_30, background as yellow } from '../../styles/colors'
 import { Camera } from 'expo-camera'
 import * as ImagePicker from 'expo-image-picker'
 
@@ -53,6 +54,7 @@ export default function Add(){
         </View>
         <Button 
           title='Flip Image'
+          color={yellow}
           onPress={()=>{
               setType(
                   type === Camera.Constants.Type.back
@@ -61,8 +63,8 @@ export default function Add(){
               )
           }}
         ></Button>
-        <Button title='Take Picture' onPress={takePicture}></Button>
-        {hasGalleryPermission && <Button title='Select Image' onPress={pickImage}/>}
+        <Button title='Take Picture' color={yellow} onPress={takePicture}></Button>
+        {hasGalleryPermission && <Button title='Select Image' color={yellow} onPress={pickImage}/>}
         {image && <Image source={{uri: image}} style={styles.image}/>}
     </View>
     )
@@ -72,6 +74,7 @@ const styles = StyleSheet.create({
     cameraContainer: {
         flex: 1,
         flexDirection: 'row',
+        backgroundColor: yellow+a_30
     },
     fixedRatio:{
         flex:1,

@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 
 import React, {Component} from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -37,6 +37,7 @@ import RegisterScreen from './components/auth/Register';
 import LoginScreen from './components/auth/Login';
 import MainScreen from './components/Main';
 import AddScreen from './components/main/Add'
+import { a_60, a_80, flute as pink } from './styles/colors';
 
 const Stack = createStackNavigator();
 
@@ -68,7 +69,6 @@ export class App extends Component {
     if(!loaded){
       return(
         <View style={{flex: 1, justifyContent: 'center'}}>
-          <Text>Loading</Text>
         </View>
       )
     }
@@ -77,8 +77,8 @@ export class App extends Component {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Landing">
             <Stack.Screen name="Landing" component={LandingScreen} options={{ headerShown: false}}/>
-            <Stack.Screen name="Register" component={RegisterScreen}/>
-            <Stack.Screen name="Login" component={LoginScreen}/>
+            <Stack.Screen name="Register" component={RegisterScreen} options={{headerStyle:{ backgroundColor: pink+a_80}}}/>
+            <Stack.Screen name="Login" component={LoginScreen} options={{headerStyle:{ backgroundColor: pink+a_80}}}/>
           </Stack.Navigator>
         </NavigationContainer>
       )
@@ -89,7 +89,9 @@ export class App extends Component {
           <NavigationContainer>
             <Stack.Navigator initialRouteName="Main">
               <Stack.Screen name="Main" component={MainScreen} options={{headerShown: false}}/>
-              <Stack.Screen name="Add" component={AddScreen}/>
+              <Stack.Screen name="Add" component={AddScreen} options={{headerStyle:{
+                        backgroundColor: pink + a_60
+                    }}}/>
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>
@@ -98,4 +100,11 @@ export class App extends Component {
     }
   }
 }
+
+const styles = StyleSheet.create({
+  header:{
+      backgroundColor: pink+a_60,
+  },
+});
+
 export default App

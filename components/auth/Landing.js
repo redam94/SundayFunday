@@ -1,11 +1,17 @@
 import React from 'react'
-import { Dimensions, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import Logo from '../svgs/Logo'
+import { Dimensions, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import {background as yellow, flute as pink, a_90, a_30, a_95, a_100, a_50} from '../../styles/colors'
 
-const window = Dimensions.get("window");
+
+let window = Dimensions.get("window");
 
 export default function Landing({ navigation }) {
+
     return (
         <View style={styles.container}>
+            <Logo style={styles.img}/>
+            <Text style={styles.text}>{'Sunday Funday'.toUpperCase()}</Text>
             <TouchableOpacity
                 title="Register"
                 activeOpacity='.5'
@@ -28,16 +34,31 @@ const styles = StyleSheet.create({
     container: { flex: 1, 
         justifyContent: 'center', 
         alignItems: 'center',
+        backgroundColor: (yellow+a_50),
+
+    },
+    text: {
+        fontSize: 42, 
+        color: '#000',
+        zIndex: 3,
+        fontWeight: '300',
+    },
+    img: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
     },
     button: { height: window.height*.1,
         width: window.width*.5,
         borderRadius: 10,
-        backgroundColor: 'lightblue',
+        backgroundColor: yellow,
         justifyContent: 'center',
         alignItems: 'center',
         marginVertical: 5,
     },
     button_text: {
         fontSize: 24,
+        color: '#fff',
+        fontWeight: '100',
     },
 });

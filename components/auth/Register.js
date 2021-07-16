@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View,  TouchableOpacity, TextInput, Text, StyleSheet, Dimensions} from 'react-native';
 import firebase from 'firebase'
+import { a_100, a_30, flute as pink, background as yellow, a_50 } from '../../styles/colors';
 
 const window = Dimensions.get('window');
 
@@ -36,7 +37,7 @@ export class Register extends Component {
 
     render() {
         return (
-            <View style={styles.containers}>
+            <View style={styles.container}>
                 <TextInput style={styles.textInput}
                     placeholder="name"
                     onChangeText={(name) => this.setState({ name })}
@@ -63,9 +64,10 @@ export class Register extends Component {
 }
 
 const styles = StyleSheet.create({
-    containers:{
-        flex: 1,
+    container: { flex: 1, 
+        justifyContent: 'center', 
         alignItems: 'center',
+        backgroundColor: yellow+a_50
     },
     textInput: {
         height: window.height*.05,
@@ -76,13 +78,14 @@ const styles = StyleSheet.create({
         height: .05*window.height,
         width: .8*window.width,
         borderRadius: 10,
-        backgroundColor: 'lightblue',
+        backgroundColor: yellow+a_100,
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 10,
     },
     buttonText: {
-        fontSize: 18
+        fontSize: 18,
+        color: pink
     }
 })
 
