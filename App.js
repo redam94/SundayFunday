@@ -36,8 +36,10 @@ import LandingScreen from './components/auth/Landing';
 import RegisterScreen from './components/auth/Register';
 import LoginScreen from './components/auth/Login';
 import MainScreen from './components/Main';
-import AddScreen from './components/main/Add'
-import { a_60, a_80, flute as pink } from './styles/colors';
+import AddScreen from './components/main/Add';
+import SaveScreen from './components/main/Save';
+
+import { a_60, a_80, flute } from './styles/colors';
 
 const Stack = createStackNavigator();
 
@@ -77,8 +79,8 @@ export class App extends Component {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Landing">
             <Stack.Screen name="Landing" component={LandingScreen} options={{ headerShown: false}}/>
-            <Stack.Screen name="Register" component={RegisterScreen} options={{headerStyle:{ backgroundColor: pink+a_80}}}/>
-            <Stack.Screen name="Login" component={LoginScreen} options={{headerStyle:{ backgroundColor: pink+a_80}}}/>
+            <Stack.Screen name="Register" component={RegisterScreen} options={{headerStyle:{ backgroundColor: flute+a_80}}}/>
+            <Stack.Screen name="Login" component={LoginScreen} options={{headerStyle:{ backgroundColor: flute+a_80}}}/>
           </Stack.Navigator>
         </NavigationContainer>
       )
@@ -90,8 +92,11 @@ export class App extends Component {
             <Stack.Navigator initialRouteName="Main">
               <Stack.Screen name="Main" component={MainScreen} options={{headerShown: false}}/>
               <Stack.Screen name="Add" component={AddScreen} options={{headerStyle:{
-                        backgroundColor: pink + a_60
+                        backgroundColor: flute + a_60
                     }}}/>
+              <Stack.Screen name="Save" component={SaveScreen} navigation={this.props.navigation} options={{headerStyle:{
+                backgroundColor: flute + a_60
+              }}}/>
             </Stack.Navigator>
           </NavigationContainer>
         </Provider>
@@ -103,7 +108,7 @@ export class App extends Component {
 
 const styles = StyleSheet.create({
   header:{
-      backgroundColor: pink+a_60,
+      backgroundColor: flute+a_60,
   },
 });
 

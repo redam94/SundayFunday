@@ -10,7 +10,7 @@ import { fetchUser } from '../redux/actions/index'
 
 import FeedScreen from './main/Feed'
 import ProfileScreen from './main/Profile'
-import { a_30, a_40, a_60, flute as pink, background as yellow, a_80 } from '../styles/colors'
+import { a_30, flute, background, a_80 } from '../styles/colors'
 
 const Tab = createBottomTabNavigator();
 
@@ -25,7 +25,7 @@ export class Main extends Component {
     render(){
        
         return(
-            <Tab.Navigator initialRouteName='Feed' labeled={false} style={{backgroundColor: yellow+a_30}} barStyle={{ backgroundColor: pink+a_80 }}>
+            <Tab.Navigator initialRouteName='Feed' labeled={false} style={{backgroundColor: background+a_30}} barStyle={{ backgroundColor: flute+a_80 }}>
                 <Tab.Screen name='Feed' component={FeedScreen} options={{
                     tabBarIcon: ({ color, size }) => {
                         return (

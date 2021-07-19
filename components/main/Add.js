@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, View, Text, Button, Image } from 'react-native'
-import { a_30, background as yellow } from '../../styles/colors'
+import { a_30, background } from '../../styles/colors'
 import { Camera } from 'expo-camera'
 import * as ImagePicker from 'expo-image-picker'
 
-export default function Add(){
+
+export default function Add({ navigation }){
     const [hasCameraPermission, setHasCameraPermission] = useState(null);
     const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
     const [camera, setCamera] = useState(null);
@@ -54,7 +55,7 @@ export default function Add(){
         </View>
         <Button 
           title='Flip Image'
-          color={yellow}
+          color={background}
           onPress={()=>{
               setType(
                   type === Camera.Constants.Type.back
@@ -63,9 +64,10 @@ export default function Add(){
               )
           }}
         ></Button>
-        <Button title='Take Picture' color={yellow} onPress={takePicture}></Button>
-        {hasGalleryPermission && <Button title='Select Image' color={yellow} onPress={pickImage}/>}
-        {image && <Image source={{uri: image}} style={styles.image}/>}
+        <Button title='Take Picture' color={background} onPress={takePicture}></Button>
+        {hasGalleryPermission && <Button title='Select Image' color={background} onPress={pickImage}/>}
+        {image && <Image source={{uri: image}} style={styles.fixedRatio}/>}
+        <Button title='Save' color={background} onPress={() => navigation.navigate('Save', {image})}/>
     </View>
     )
 }
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
     cameraContainer: {
         flex: 1,
         flexDirection: 'row',
-        backgroundColor: yellow+a_30
+        backgroundColor: background+a_30
     },
     fixedRatio:{
         flex:1,

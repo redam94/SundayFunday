@@ -1,7 +1,7 @@
 import React from 'react'
 import Logo from '../svgs/Logo'
 import { Dimensions, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
-import {background as yellow, flute as pink, a_90, a_30, a_95, a_100, a_50} from '../../styles/colors'
+import {background, a_50} from '../../styles/colors'
 
 
 let window = Dimensions.get("window");
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     container: { flex: 1, 
         justifyContent: 'center', 
         alignItems: 'center',
-        backgroundColor: (yellow+a_50),
+        backgroundColor: (background+a_50),
 
     },
     text: {
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     button: { height: window.height*.1,
         width: window.width*.5,
         borderRadius: 10,
-        backgroundColor: yellow,
+        backgroundColor: background,
         justifyContent: 'center',
         alignItems: 'center',
         marginVertical: 5,
