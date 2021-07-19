@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, View, Text, Button, Image } from 'react-native'
-import { a_30, background } from '../../styles/colors'
+import { StyleSheet, View, Text, Image } from 'react-native'
+import Button from '../shared/Button'
+import { a_30, a_60, background, flute } from '../../styles/colors'
 import { Camera } from 'expo-camera'
 import * as ImagePicker from 'expo-image-picker'
+
 
 
 export default function Add({ navigation }){
@@ -54,8 +56,7 @@ export default function Add({ navigation }){
             <Camera style={styles.fixedRatio} type={type} ratio={'1:1'} ref={ref => setCamera(ref)}/>
         </View>
         <Button 
-          title='Flip Image'
-          color={background}
+          text='Flip Camera'
           onPress={()=>{
               setType(
                   type === Camera.Constants.Type.back
@@ -63,16 +64,30 @@ export default function Add({ navigation }){
                     : Camera.Constants.Type.back
               )
           }}
-        ></Button>
-        <Button title='Take Picture' color={background} onPress={takePicture}></Button>
-        {hasGalleryPermission && <Button title='Select Image' color={background} onPress={pickImage}/>}
+        />
+        <Button text='Take Picture' onPress={takePicture}/>
+        {hasGalleryPermission && <Button text='Select Picture' onPress={pickImage}/>}
         {image && <Image source={{uri: image}} style={styles.fixedRatio}/>}
-        <Button title='Save' color={background} onPress={() => navigation.navigate('Save', {image})}/>
+        <Button 
+            text='Save' 
+            onPress={() => navigation.navigate('Save', {image})}/>
     </View>
     )
 }
 
 const styles = StyleSheet.create({
+    buttonStyle: {
+        width: 'auto',
+        height: 30,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        backgroundColor: background,
+    },
+    textStyle: {
+        color: flute,
+        justifyContent: 'center',
+        fontSize: 16,
+    },
     cameraContainer: {
         flex: 1,
         flexDirection: 'row',
