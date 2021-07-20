@@ -49,14 +49,27 @@ export default function Add({ navigation }){
     if (hasCameraPermission === false){
         return <Text>No access to camera</Text>
     }
-    
+    if(image){
+        return(
+            <View style={{flex: 1}}>
+                <Image source={{uri: image}} resizeMode='center' style={styles.fixedRatio}/>
+                <Button onPress={() => setImage(null)} text="Clear"/>
+                <Button 
+                    text='Save' 
+                    onPress={() => navigation.navigate('Save', {image})}/>
+            </View>
+        )
+    }
     return(
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: background+a_30}}>
         <View style={styles.cameraContainer}>
             <Camera style={styles.fixedRatio} type={type} ratio={'1:1'} ref={ref => setCamera(ref)}/>
         </View>
         <Button 
-          text='Flip Camera'
+          text=''
+          buttonStyle={{width: 50, height: 50, borderRadius: 30, alignSelf: 'center',
+            justifyContent: 'space-around',
+            backgroundColor: background,}}
           onPress={()=>{
               setType(
                   type === Camera.Constants.Type.back
@@ -67,10 +80,7 @@ export default function Add({ navigation }){
         />
         <Button text='Take Picture' onPress={takePicture}/>
         {hasGalleryPermission && <Button text='Select Picture' onPress={pickImage}/>}
-        {image && <Image source={{uri: image}} style={styles.fixedRatio}/>}
-        <Button 
-            text='Save' 
-            onPress={() => navigation.navigate('Save', {image})}/>
+    
     </View>
     )
 }
@@ -95,7 +105,9 @@ const styles = StyleSheet.create({
     },
     fixedRatio:{
         flex:1,
-        aspectRatio: 1
+        flexDirection: 'row',
+        aspectRatio: 1,
+        alignItems: 'center',
     },
     image:{
         flex: 1,

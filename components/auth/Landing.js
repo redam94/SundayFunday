@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from '../svgs/Logo'
 import { Dimensions, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
+import Button from '../shared/Button'
 import {background, a_50} from '../../styles/colors'
 
 
@@ -12,20 +13,17 @@ export default function Landing({ navigation }) {
         <View style={styles.container}>
             <Logo style={styles.img}/>
             <Text style={styles.text}>{'Sunday Funday'.toUpperCase()}</Text>
-            <TouchableOpacity
-                title="Register"
-                activeOpacity='.5'
+            <Button 
+                text="Register" 
                 onPress={() => navigation.navigate("Register")}
-                style={styles.button}>
-                    <Text style={styles.button_text}>Register</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                title="Login"
-                activeOpacity='.5'
+                buttonStyle={styles.button}
+                textStyle={styles.button_text}/>
+            <Button
+                text="Login"
                 onPress={() => navigation.navigate("Login")}
-                style={styles.button}>
-                <Text style={styles.button_text}>Login</Text>
-            </TouchableOpacity>
+                buttonStyle={styles.button}
+                textStyle={styles.button_text}
+                />
         </View>
     )
 }
@@ -48,7 +46,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'absolute',
     },
-    button: { height: window.height*.1,
+    button: { 
+        height: window.height*.1,
         width: window.width*.5,
         borderRadius: 10,
         backgroundColor: background,
@@ -59,6 +58,6 @@ const styles = StyleSheet.create({
     button_text: {
         fontSize: 24,
         color: '#fff',
-        fontWeight: '100',
+        fontWeight: '200',
     },
 });
