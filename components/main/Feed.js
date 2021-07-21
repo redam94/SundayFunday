@@ -1,12 +1,42 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { SafeAreaView, Text, StyleSheet, FlatList } from 'react-native'
 import { a_30, background } from '../../styles/colors'
+import Card from './mainComponents/Card'
 
 export default function Feed(){
+    const data = [
+        {
+            id: 0,
+            date: '01/12/21',
+            text: 'Hello!'
+        },
+        {
+            id: 1,
+            date: '01/15/21',
+            text: "Cool!"
+        },
+        {
+            id: 2,
+            date: '01/15/21',
+            text: "Wow!"
+        },
+        {
+            id: 3,
+            date: '01/15/21',
+            text: "The best sunday ever!"
+        },
+        {
+            id: 4,
+            date: '01/15/21',
+            text: "How to have fun!"
+        },
+    ];
+
     return(
-        <View style={styles.container}>
-            <Text style={{fontSize:24}}>Feed</Text>
-        </View>
+        <SafeAreaView style={styles.container}>
+            <Card/>
+            <Card/>
+        </SafeAreaView>
     )
 }
 
@@ -16,6 +46,6 @@ const styles = StyleSheet.create({
         paddingTop: 40,
         paddingHorizontal: 20,
         backgroundColor: background+a_30,
-        overflow: 'hidden'
+        overflow: 'scroll'
     },
 })

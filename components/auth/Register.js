@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, StyleSheet, Dimensions} from 'react-native';
+import { View, TextInput, StyleSheet, Dimensions, SafeAreaView } from 'react-native';
 import Button from '../shared/Button';
 import firebase from 'firebase'
 import { a_100, flute, background, a_50 } from '../../styles/colors';
@@ -38,7 +38,7 @@ export class Register extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <TextInput style={styles.textInput}
                     placeholder="name"
                     onChangeText={(name) => this.setState({ name })}
@@ -58,7 +58,7 @@ export class Register extends Component {
                     buttonStyle={styles.button}
                     textStyle={styles.buttonText}
                 />
-            </View>
+            </SafeAreaView>
         )
     }
 }
