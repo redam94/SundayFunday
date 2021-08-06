@@ -21,7 +21,8 @@ export class Register extends Component {
 
     onSignUp(){
         const { email, password, name } = this.state;
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+        firebase.auth()
+        .createUserWithEmailAndPassword(email, password)
         .then((result)=>{
             firebase.firestore().collection("users")
                 .doc(firebase.auth().currentUser.uid)
@@ -50,11 +51,11 @@ export class Register extends Component {
                 <TextInput style={styles.textInput}
                     placeholder="password"
                     secureTextEntry={true}
-                    onChangeText={(password) => this.setState({ password} )}
+                    onChangeText={(password) => this.setState({ password })}
                 />
                 <Button 
                     text="Sign Up" 
-                    onPress={() => this.onSignUp()} 
+                    onPress={this.onSignUp} 
                     buttonStyle={styles.button}
                     textStyle={styles.buttonText}
                 />

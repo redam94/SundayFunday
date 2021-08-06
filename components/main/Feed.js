@@ -4,7 +4,7 @@ import { a_30, background } from '../../styles/colors'
 import Card from './mainComponents/Card'
 
 export default function Feed(){
-    const data = [
+    const comment_data = [
         {
             id: 0,
             date: '01/12/21',
@@ -31,11 +31,28 @@ export default function Feed(){
             text: "How to have fun!"
         },
     ];
-
+    const card_data = [
+        {
+            id: 1000,
+            img: require('../../assets/champagne.png'),
+            comments: comment_data,
+        },
+        {
+            id: 2000,
+            img: require('../../assets/champagne.png'),
+            comments: comment_data,
+        }
+    ];
+    const makeCard = ( item ) => {
+        return <Card img={item.img} data={item.comments}/>
+    };
     return(
         <SafeAreaView style={styles.container}>
-            <Card/>
-            <Card/>
+            <FlatList
+                data={card_data}
+                renderItem={makeCard}
+                keyExtractor={item => item.id}
+            />
         </SafeAreaView>
     )
 }

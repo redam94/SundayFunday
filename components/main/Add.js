@@ -67,8 +67,7 @@ export default function Add({ navigation }){
         </View>
         <Button 
           text=''
-          buttonStyle={{width: 50, height: 50, borderRadius: 30, alignSelf: 'center',
-            justifyContent: 'space-around',
+          buttonStyle={{width: 50, height: 50, borderRadius: 30, position: 'absolute', top: 10, left: 10,
             backgroundColor: background,}}
           onPress={()=>{
               setType(

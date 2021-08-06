@@ -16,7 +16,7 @@ export class Login extends Component {
             password: '',
         };
 
-        this.onSignUp = this.onSignIn.bind(this);
+        this.onSignIn = this.onSignIn.bind(this);
     }
 
     onSignIn(){
@@ -46,7 +46,7 @@ export class Login extends Component {
                 />
                 <Button
                     buttonStyle={styles.button}
-                    onPress={() => this.onSignUp}
+                    onPress={this.onSignIn}
                     text="Sign In"
                     textStyle={styles.buttonText}
                 />
