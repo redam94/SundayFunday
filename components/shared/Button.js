@@ -1,11 +1,13 @@
 import React from 'react'
 import { TouchableOpacity, Text, StyleSheet} from 'react-native'
+
 import { background } from '../../styles/colors';
 
-export default function Button({ buttonStyle, text, textStyle, onPress, ...props}) {
+export default function Button({ buttonStyle, text, textStyle, onPress, children, ...props }) {
 
     return (
       <TouchableOpacity onPress={onPress} style={ buttonStyle || styles.buttonStyle } activeOpacity={props.activeOpacity || .5 }>
+          {children}
           <Text style={ textStyle || styles.textStyle }>{text.toUpperCase()}</Text>
       </TouchableOpacity>
     )

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native'
+import { Dimensions, StyleSheet, View, Text, Image } from 'react-native'
 import Button from '../shared/Button'
 import { a_30, a_60, background, flute } from '../../styles/colors'
 import { Camera } from 'expo-camera'
 import * as ImagePicker from 'expo-image-picker'
-
+import BackButton from '../svgs/SwitchCamera'
 
 
 export default function Add({ navigation }){
@@ -49,10 +49,14 @@ export default function Add({ navigation }){
     if (hasCameraPermission === false){
         return <Text>No access to camera</Text>
     }
+    var height = Dimensions.get("window").height;
+    var width = Dimensions.get('window').width;
+    width = (width<height)?width:height;
     if(image){
+        
         return(
-            <View style={{flex: 1}}>
-                <Image source={{uri: image}} resizeMode='center' style={styles.fixedRatio}/>
+            <View style={{flex: 1, backgroundColor: background+a_30, alignContent: 'center'}}>
+                <Image source={{uri: image}} resizeMode='center' style={{width: width, height: width}}/>
                 <Button onPress={() => setImage(null)} text="Clear"/>
                 <Button 
                     text='Save' 
@@ -63,12 +67,11 @@ export default function Add({ navigation }){
     return(
     <View style={{flex: 1, backgroundColor: background+a_30}}>
         <View style={styles.cameraContainer}>
-            <Camera style={styles.fixedRatio} type={type} ratio={'1:1'} ref={ref => setCamera(ref)}/>
+            <Camera style={[styles.fixedRatio, {aspectRatio: 1, width: width, height: width}]} type={type} ratio={'1:1'} ref={ref => setCamera(ref)}/>
         </View>
         <Button 
           text=''
-          buttonStyle={{width: 50, height: 50, borderRadius: 30, position: 'absolute', top: 10, left: 10,
-            backgroundColor: background,}}
+          buttonStyle={{width: 50, height: 50, borderRadius: 30, position: 'absolute', top: 10, left: 10}}
           onPress={()=>{
               setType(
                   type === Camera.Constants.Type.back
@@ -76,8 +79,16 @@ export default function Add({ navigation }){
                     : Camera.Constants.Type.back
               )
           }}
-        />
-        <Button text='Take Picture' onPress={takePicture}/>
+        >
+            <BackButton width={35} height={35}/>
+        </Button>
+        
+        <Button 
+            text=''
+            onPress={takePicture} 
+            buttonStyle={{width: 50, height:50, 
+                          borderRadius: 30, position: 'absolute',
+                          top:width-60, left: Dimensions.get('window').width/2-25, backgroundColor: "#ffffffd0"}}/>
         {hasGalleryPermission && <Button text='Select Picture' onPress={pickImage}/>}
     
     </View>
@@ -105,8 +116,8 @@ const styles = StyleSheet.create({
     fixedRatio:{
         flex:1,
         flexDirection: 'row',
-        aspectRatio: 1,
         alignItems: 'center',
+        backgroundColor: background+a_30,
     },
     image:{
         flex: 1,

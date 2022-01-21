@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image, FlatList, Pressable, Modal } from 'react-native';
+import { Dimensions, View, StyleSheet, Image, FlatList, Text } from 'react-native';
 import { a_10, background, flute } from '../../../styles/colors';
 import Comment from './Comment';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+
+var width = Dimensions.get("window").width;
 
 export default class Card extends Component {
     constructor({ data, img, ...props }){
@@ -40,8 +43,9 @@ export default class Card extends Component {
     
     renderItem({ item }){
         const { date, text } = item;
+        width = Dimensions.get('window').width
         return (
-            <Comment date={date}>{text}</Comment>
+            <Comment date={date} width={width}>{text}</Comment>
         )
     };
     
@@ -51,42 +55,31 @@ export default class Card extends Component {
     
     render() {
         const { isModalVisible } = this.state;
+        width = Dimensions.get('window').width;
         return (
             <View style={styles.cardContainer}>
-                <Modal 
-                    animationType="slide"
-                    transparent={true}
-                    visible={isModalVisible}
-                    onRequestClose={() => {
-                        this.setModalVisible(!isModalVisible);
-                    }}>
-                    <View style={styles.modalContainer}>
-                        <Pressable onPress={() => { this.setModalVisible(!isModalVisible) }}>
-                            <Image style={styles.image} source={this.img}/>
-                        </Pressable>
-                        <FlatList 
-                            style={styles.modalText} 
-                            data={this.data}
-                            renderItem={this.renderItem}
-                            keyExtractor={item => item.id}>
-                        </FlatList>
+                <View styles={{flexDirection: 'row', height:20, width: width, background:flute, overflow:'hidden'}}>
+                    <Image style={{height:20, width:20, borderRadius:10}} source={require('../../../assets/IMG_3484.jpeg')} />
+                    <Text style={{fontSize:12}}>redam94</Text>
+                </View>
+                <Image style={styles.image} source={this.img}/>
+                <View style={{
+                    flex: 2, 
+                    height:15, 
+                    width: width, 
+                    flexDirection: 'row', 
+                    backgroundColor: flute}}>
+                    <MaterialCommunityIcons style={{position:'relative', left:width-44}} size={26} name='bookmark-outline' />
+                    
+                    <MaterialCommunityIcons style={{position:'relative', left:5}} size={26} name='glass-cocktail' color={background}/>
+                
+                    <MaterialCommunityIcons style={{position:'relative', left:5}} size={26} name="terrain"/>
+                    <MaterialCommunityIcons style={{position:'relative', left:5}} size={26} name="silverware-clean"/>
+                </View>
+                <View style={styles.textContainer}>
+                    <Comment date={this.data[0].date}>Wow!</Comment>
                     </View>
-                </Modal>
-                <Pressable 
-                    style={styles.image} 
-                    onPress={() => {
-                    this.setModalVisible(!isModalVisible);
-                    console.log(isModalVisible);
-                    }
-                    }>
-                    <Image style={styles.image} source={this.img}/>
-                </Pressable>
-                <FlatList 
-                    style={styles.textContainer} 
-                    data={this.data}
-                    renderItem={this.renderItem}
-                    keyExtractor={item => item.id}>
-                </FlatList>
+                
             </View>
         )
     };
@@ -95,9 +88,11 @@ export default class Card extends Component {
 const styles = StyleSheet.create({
     cardContainer:{
         elevation: 3,
-        width:300,
-        height:400,
-        margin: 10,
+        flex:1,
+        flexDirection: 'column',
+        width: width,
+        height: (.05*width<75)?(75+width):1.05*width,
+        margin: 0,
         alignSelf: 'center',
         shadowOpacity: .5,
         shadowRadius: 20,
@@ -109,28 +104,21 @@ const styles = StyleSheet.create({
         shadowColor:'#000',
         borderColor:'#fff',
         overflow: 'hidden',
+        backgroundColor: flute,
     },
     image:{
-        height: 300,
-        width: 300,
+        height: width,
+        width: width,
         alignSelf: 'center',
         backgroundColor:'#fff',
+        overflow: 'hidden'
     },
     textContainer:{
-        height: 100,
-        width: 300,
-        overflow: 'scroll',
+        height: (.05*width<75)?75:.05*width,
+        flex: 3,
+        marginLeft:25,
+        width: width,
+        overflow: 'hidden',
         backgroundColor: flute,
     },
-    modalContainer:{
-        flex:1,
-        justifyContent: 'center',
-        paddingBottom: 50,
-        backgroundColor: background + a_10
-    },
-    modalText:{
-        alignSelf: 'center',
-        overflow: 'scroll',
-        backgroundColor: flute,
-    }
 });
